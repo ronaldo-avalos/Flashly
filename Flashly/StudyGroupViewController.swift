@@ -50,14 +50,37 @@ class StudyGroupViewController: UIViewController {
              UIBarButtonItem(title: "Editar", style: .plain, target: self, action: #selector(didTapEdit))
          ]
         
+        let playButton = UIButton(type: .system)
+        playButton.setTitle("Play", for: .normal)
+        playButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        playButton.setTitleColor(.white, for: .normal)
+        playButton.backgroundColor = .systemBlue
+        playButton.layer.cornerRadius = 10
+        playButton.translatesAutoresizingMaskIntoConstraints = false
+        playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
+        
+        
         // Add and constrain tableView
+        view.addSubview(playButton)
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150),
+            
+            playButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 30),
+            playButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            playButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            playButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            
         ])
+    }
+    
+    @objc private func playButtonTapped() {
+        let vc = FlashcardViewController()
+        self.show(vc, sender: nil)
     }
     
     @objc private func didTapEdit() {
