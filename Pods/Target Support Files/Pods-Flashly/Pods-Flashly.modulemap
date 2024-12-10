@@ -1,0 +1,6 @@
+framework module Pods_Flashly {
+  umbrella header "Pods-Flashly-umbrella.h"
+
+  export *
+  module * { export * }
+}
